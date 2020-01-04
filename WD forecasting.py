@@ -68,6 +68,24 @@ plot_acf(dfp)
 ## check for stationary
 ## take mean , variance between different time periods and check
 
+## with ADCF test we can check for stationary
+# h0 = time series non stationary
+# hal = time series stationary 
+
+# check for p value
+# p > 0.05 reject hal, if not accept hal
+
+
+from statsmodels.tsa.stattools import adfuller
+
+dat = np.squeeze(dfp)
+
+data1 = dat.values
+result = adfuller(data1)
+print('ADF Statistic: %f' % result[0])
+print('p-value: %f' % result[1])
+
+# we got p value as 0.039830 which is not p> 0.05 so accept hal, means time series is stationary.
 
 
 # we are shifting one for stationary.
